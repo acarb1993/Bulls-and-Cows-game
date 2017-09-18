@@ -31,13 +31,14 @@ public:
 	EGuessStatus checkGuessValidity(FString) const; 
 
 	void reset(); // TODO make a more rich return value.
-	FBullCowCount submitGuess(FString playerGuess);
+	FBullCowCount submitValidGuess(FString playerGuess);
 
 private:
 	// See constructor for initialization.
 	int32 myCurrentTry;
 	int32 myMaxTries;
 	FString myHiddenWord;
+	bool bGameisWon;
 };
 
 #endif
