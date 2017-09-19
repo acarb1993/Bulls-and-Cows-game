@@ -2,9 +2,14 @@
 #define FBULLCOWGAME_H
 
 #include<string>
+#include <map>
+#include <random>
+#include <ctime>
 
-using FString = std::string; // The type FString is now an alias for type string.
-using int32 = int; // The type int32 is now an alias for type int.
+#define TMap std::map // Copying the standard from unreal engine
+
+using FString = std::string; // The type FString is now an alias for type string, to make unreal friendly.
+using int32 = int; // The type int32 is now an alias for type int, to make unreal friendly.
 
 // All values initialized to 0
 struct FBullCowCount {
@@ -26,11 +31,12 @@ public:
 
 	int32 getMaxTries() const; 
 	int32 getCurrentTry() const;
-	int getHiddenWordLength() const;
+	int32 getHiddenWordLength() const;
+
 	bool isGameWon() const;
 	EGuessStatus checkGuessValidity(FString) const; 
 
-	void reset(); // TODO make a more rich return value.
+	void reset();
 	FBullCowCount submitValidGuess(FString playerGuess);
 
 private:
@@ -39,6 +45,10 @@ private:
 	int32 myMaxTries;
 	FString myHiddenWord;
 	bool bGameisWon;
+
+	bool isIsogram(FString word) const;
+	bool isLowerCase(FString word) const;
+	std::string generateMyHiddenWord();
 };
 
 #endif
